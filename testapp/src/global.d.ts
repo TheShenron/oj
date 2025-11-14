@@ -1,0 +1,25 @@
+// src/global.d.ts
+declare module '*.css';
+declare module '*.scss';
+declare module '*.sass';
+declare module '*.css';
+declare module '*.svg';
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.gif';
+declare module '*.webp';
+declare module '*.bmp';
+declare module '*.tiff';
+declare module '*.woff';
+declare module '*.woff2';
+declare module '*.eot';
+declare module '*.ttf';
+declare module '*.otf';
+declare module '*.mp3';
+declare module '*.wav';
+declare module '*.mp4';
+declare module '*.webm';
+declare module '*.ogg';
+declare module '*.flac';
+declare module '*.aac';         

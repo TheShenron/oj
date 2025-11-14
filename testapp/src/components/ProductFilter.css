@@ -1,0 +1,55 @@
+.pf-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.pf-search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.pf-categories {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.pf-category {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+/* Candidate should style card, hover, empty state, responsive tweaks */
+.pf-card {
+    padding: 12px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.pf-card-name {
+    font-weight: 600;
+}
+
+.pf-card-cat {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.pf-empty {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
