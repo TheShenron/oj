@@ -2,6 +2,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { LoginForm } from "@/components/login-form/login-form";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -37,16 +38,10 @@ export default function LoginPage() {
     }
 
     return (
-        <main style={{ maxWidth: 420, margin: "40px auto" }}>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit} style={{ display: "grid", gap: 8 }}>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-                <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" type="password" />
-                <button type="submit" disabled={loading}>{loading ? "Logging..." : "Login"}</button>
-                {err && <div style={{ color: "red" }}>{err}</div>}
-            </form>
-            <hr />
-            <p>Demo: demo@example.com / password</p>
-        </main>
+        <div className="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+            <div className="w-full max-w-sm">
+                <LoginForm />
+            </div>
+        </div>
     );
 }

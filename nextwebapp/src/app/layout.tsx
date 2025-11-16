@@ -1,13 +1,19 @@
 // app/layout.tsx
-import { Button } from '@/components/ui/button';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 import '@/styles/globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body>
-                {children}
-                <Button>Click Me</Button>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );

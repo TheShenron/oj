@@ -1,15 +1,17 @@
-'use client";'
-import PreLoginNav from "@/components/nav/PreLoginNav"
+'use client'
 
-// app/page.tsx
-export default function HomePage() {
+import { LoginForm } from "@/components/login-form/login-form"
+
+const HomePage: React.FC = () => {
+
     return (
-        <>
-            <PreLoginNav />
-            <main style={{ padding: 20 }}>
-                <h1>Home</h1>
-                <p>Welcome — use the Login link to see the protected Dashboard.</p>
-            </main>
-        </>
-    );
+        <div className="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+            <div className="w-full max-w-sm">
+                <LoginForm />
+            </div>
+        </div>
+    )
 }
+
+
+export default HomePage
