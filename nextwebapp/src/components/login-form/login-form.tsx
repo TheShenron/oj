@@ -1,3 +1,9 @@
+'use client'
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+
 import { GalleryVerticalEnd } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -5,19 +11,59 @@ import { Button } from "@/components/ui/button"
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
+
+
+const formSchema = z.object({
+  email: z.email("Please enter a valid email"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+})
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+
+  const router = useRouter();
+
+  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: 'demo@example.com', password: 'password' }),
+      });
+      const j = await res.json();
+      if (!res.ok) {
+        return;
+      }
+      router.replace("/dashboard");
+    } catch (err) {
+      console.error("Network error");
+    } finally {
+      console.log("Finished login attempt");
+    }
+  }
+
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
             <a
@@ -34,14 +80,36 @@ export function LoginForm({
               Don&apos;t have an account? <a href="#">Sign up</a>
             </FieldDescription>
           </div>
+
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
             <Input
+              {...register("email")}
               id="email"
               type="email"
               placeholder="m@example.com"
               required
+              autoComplete="new-email"
             />
+            {errors.email && (
+              <FieldError errors={[errors.email]} />
+            )}
+          </Field>
+
+          <Field>
+            <div className="flex items-center">
+              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <a
+                href="#"
+                className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+              >
+                Forgot your password?
+              </a>
+            </div>
+            <Input id="password" type="password" required autoComplete="new-password" {...register('password')} />
+            {errors.password && (
+              <FieldError errors={[errors.password]} />
+            )}
           </Field>
           <Field>
             <Button type="submit">Login</Button>
