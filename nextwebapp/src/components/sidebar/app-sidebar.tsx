@@ -1,116 +1,52 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  Bot,
-  GalleryVerticalEnd,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
+import * as React from "react";
+import { Bot, Settings2, SquareTerminal } from "lucide-react";
 
-import { NavMain } from "@/components/sidebar/nav-main"
-import { NavUser } from "@/components/sidebar/nav-user"
-import { TeamSwitcher } from "@/components/sidebar/team-switcher"
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavUser } from "@/components/sidebar/nav-user";
+import { TeamSwitcher } from "@/components/sidebar/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Nikonerds Inc.",
-      logo: GalleryVerticalEnd,
-      plan: "(α)",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Evaluation",
+      url: "/evaluation",
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "Results",
+      url: "/results",
       icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Submissions",
+      url: "/submissions",
       icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

@@ -2,7 +2,6 @@
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
-import { success } from "zod";
 
 export default function RootLayout({
   children,

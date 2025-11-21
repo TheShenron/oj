@@ -83,7 +83,7 @@ export default function Dashboard() {
 
           <div className="px-6">
             <div
-              className="h-70 border-2 border-dashed border-border rounded-md p-8 flex flex-col items-center justify-center text-center cursor-pointer"
+              className="h-50 border-2 border-dashed border-border rounded-md p-8 flex flex-col items-center justify-center text-center cursor-pointer"
               onClick={handleBoxClick}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
@@ -134,7 +134,6 @@ export default function Dashboard() {
                   }}
                 >
                   <div className="flex items-center gap-2">
-
                     <div className="flex-1 pr-1">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
@@ -192,9 +191,9 @@ export default function Dashboard() {
                   <div className="space-y-1">
                     <p className="text-[13px] font-medium">Need assistance?</p>
                     <p className="text-muted-foreground dark:text-muted-background text-xs max-w-[200px]">
-                      Upload project by dragging and dropping files or
-                      using the file browser. Supported formats: zip.
-                      Maximum file size: 5MB.
+                      Upload project by dragging and dropping files or using the
+                      file browser. Supported formats: zip. Maximum file size:
+                      5MB.
                     </p>
                   </div>
                 </TooltipContent>

@@ -8,8 +8,8 @@ import Link from "next/link";
 import * as z from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/app/(public)/login/components/LoginSchema";
-import { login } from "@/lib/services/auth";
+import { signupSchema } from "@/app/(public)/signup/components/SignupSchema";
+import { signup } from "@/lib/services/auth";
 
 //icons
 import { GalleryVerticalEnd } from "lucide-react";
@@ -27,30 +27,30 @@ import {
 } from "@/components/ui/field";
 import { toast } from "sonner";
 
-export function LoginComp({
+export function SignupComp({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
 
-  const { control, handleSubmit } = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const { control, handleSubmit } = useForm<z.infer<typeof signupSchema>>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
-      magicURL: "",
+      email: "",
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+  const onSubmit = async (data: z.infer<typeof signupSchema>) => {
     const toastId = toast.loading("Logging in...");
 
     try {
-      const res = await login({ magicURL: data.magicURL });
-      console.log(res, 'login res');
-      toast.success("Login successful!", { id: toastId });
-      router.replace("/evaluation");
+      const res = await signup({ email: data.email });
+      console.log(res, 'signup res');
+      toast.success("Signup successful!", { id: toastId });
+      router.replace("/login");
     } catch (error) {
-      console.log(error, 'login error');
-      toast.error("Login failed", { id: toastId });
+      console.log(error, 'signup error');
+      toast.error("Signup failed", { id: toastId });
     }
 
   };
@@ -70,22 +70,22 @@ export function LoginComp({
             </Link>
             <h1 className="text-xl font-bold">Welcome to Nikonerds Inc.</h1>
             <FieldDescription>
-              Don&apos;t have an account? <Link href="/signup">Sign up</Link>
+              Already have an account? <Link href="/login">Log in</Link>
             </FieldDescription>
           </div>
 
           <Controller
-            name="magicURL"
+            name="email"
             control={control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="magicURL">Magic URL</FieldLabel>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   {...field}
-                  id="magicURL"
-                  type="magicURL"
+                  id="email"
+                  type="email"
                   required
-                  placeholder="demo@example.com"
+                  placeholder="Nikon@gmail.com"
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -96,7 +96,7 @@ export function LoginComp({
           />
 
           <Field>
-            <Button type="submit">Verify</Button>
+            <Button type="submit">Continue</Button>
           </Field>
         </FieldGroup>
       </form>
