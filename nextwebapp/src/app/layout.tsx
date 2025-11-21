@@ -1,20 +1,33 @@
 // app/layout.tsx
-import { ThemeProvider } from '@/components/theme/theme-provider';
-import '@/styles/globals.css';
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import "@/styles/globals.css";
+import { success } from "zod";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <body>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    {children}
-                </ThemeProvider>
-            </body>
-        </html>
-    );
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: { boxShadow: "none" },
+            duration: 1500,
+          }}
+        />
+      </body>
+    </html>
+  );
 }

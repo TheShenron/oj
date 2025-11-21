@@ -1,17 +1,13 @@
-'use client'
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-import { LoginForm } from "@/components/login-form/login-form"
+export default async function LandingPage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
-const HomePage: React.FC = () => {
-
-    return (
-        <div className="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-            <div className="w-full max-w-sm">
-                <LoginForm />
-            </div>
-        </div>
-    )
+  if (token) {
+    redirect("/dashboard");
+  } else {
+    redirect("/login");
+  }
 }
-
-
-export default HomePage
