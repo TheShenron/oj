@@ -1,6 +1,9 @@
 // app/layout.tsx
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import SessionProviderClient from "./providers/SessionProviderClient";
+import ThemeProviderClient from "./providers/ThemeProviderClient";
+import ToastProviderClient from "./providers/ToastProviderClient";
+
+// styles
 import "@/styles/globals.css";
 
 export default function RootLayout({
@@ -11,21 +14,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            style: { boxShadow: "none" },
-            duration: 1500,
-          }}
-        />
+        <SessionProviderClient>
+          <ThemeProviderClient>
+            {children}
+          </ThemeProviderClient>
+          <ToastProviderClient />
+        </SessionProviderClient>
       </body>
     </html>
   );
