@@ -10,6 +10,19 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        async jwt({ token, profile }) {
+            if (profile) {
+                token.githubUsername = (profile as any).login;
+            }
+            return token;
+        },
+
+        async session({ session, token }) {
+            session.user.githubUsername = token.githubUsername as string;
+            return session;
+        },
+    }
 };
 
 const handler = NextAuth(authOptions);
