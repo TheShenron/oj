@@ -13,7 +13,7 @@ export default function NotFound() {
                     </div>
 
                     <p className="text-sm text-muted-foreground">
-                        The path you seek does not exist.
+                        The page you're looking for doesn't exist.
                     </p>
 
                     <div className="h-px w-12 bg-muted" />

@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 
+
 // next athuh methods
 import { signIn } from "next-auth/react";
 
 //icons
-import { GalleryVerticalEnd } from "lucide-react";
+import { GalleryVerticalEnd, Moon, Sun, Laptop } from "lucide-react";
 
 //UI components
 import { cn } from "@/lib/utils";
@@ -18,6 +19,8 @@ import {
   FieldDescription,
   FieldGroup,
 } from "@/components/ui/field";
+import { useTheme } from "next-themes";
+
 
 export function LoginComp({
   className,
@@ -25,6 +28,7 @@ export function LoginComp({
 }: React.ComponentProps<"div">) {
 
   const [isDisabled, setIsDisabled] = useState(false);
+  const { setTheme } = useTheme()
 
   const handleLogin = async () => {
     setIsDisabled(true);
@@ -66,6 +70,18 @@ export function LoginComp({
         <Link href="#">Terms of Service</Link> and{" "}
         <Link href="#">Privacy Policy</Link>.
       </FieldDescription>
+
+      <Button variant="outline" size="icon" onClick={() => setTheme("light")}>
+        <Sun />
+      </Button>
+
+      <Button variant="outline" size="icon" onClick={() => setTheme("dark")}>
+        <Moon />
+      </Button>
+
+      <Button variant="outline" size="icon" onClick={() => setTheme("system")}>
+        <Laptop />
+      </Button>
     </div>
   );
 }
