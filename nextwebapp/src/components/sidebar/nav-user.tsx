@@ -1,8 +1,11 @@
 "use client";
 
+// next athuh methods
+import { useSession, signOut } from "next-auth/react";
+
 import { ChevronsUpDown, DecimalsArrowRight, LogOut } from "lucide-react";
 
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,21 +20,15 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useRouter } from "next/navigation";
 
 export function NavUser() {
-  const router = useRouter();
+  const { data: userData } = useSession();
   const { isMobile } = useSidebar();
 
 
-
-  function logout() {
-    router.replace("/login");
-  }
-
   const user = {
-    name: "Assessee",
-    email: "Gourav143faz@gmail.com",
+    name: userData?.user?.name || "Assessee",
+    email: userData?.user?.email || 'Assessee@gmail.com',
   };
 
   return (
@@ -44,13 +41,14 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 border rounded-sm">
-                <div className="flex size-8 items-center justify-center">
+                <AvatarImage src={userData?.user?.image ?? ''} alt="@avatar" />
+                <AvatarFallback>
                   <DecimalsArrowRight className="size-6" />
-                </div>
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium capitalize">{user.name}</span>
+                <span className="truncate text-xs capitalize">{user.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -65,18 +63,23 @@ export function NavUser() {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 border rounded-sm">
                   <div className="flex size-8 items-center justify-center">
-                    <DecimalsArrowRight className="size-6" />
+                    {/* <DecimalsArrowRight className="size-6" />
+                    <img src={userData?.user?.image} alt="profileImage" /> */}
+                    <AvatarImage src={userData?.user?.image ?? ''} alt="@avatar" />
+                    <AvatarFallback>
+                      <DecimalsArrowRight className="size-6" />
+                    </AvatarFallback>
                   </div>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium capitalize">{user.name}</span>
+                  <span className="truncate text-xs capitalize">{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={logout}>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
               Log out
             </DropdownMenuItem>
