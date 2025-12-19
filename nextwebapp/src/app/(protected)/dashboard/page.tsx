@@ -36,7 +36,7 @@ const avatars = [
 const Dashboard = () => {
 
     return (
-        <div className="lg:px-8 lg:border-l lg:border-r lg:border-dashed bg-gradient-to-b from-neutral-100/5 to-transparent h-150">
+        <div className="lg:px-8 lg:border-l lg:border-r lg:border-dashed bg-gradient-to-b from-neutral-100/4 to-transparent h-150">
 
             <div className="pt-25">
                 <div className="text-center">
