@@ -122,3 +122,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@keyframes snake {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.snake-border {
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg,
+      transparent 270deg,
+      rgba(236, 7, 7, 1) 300deg,
+      transparent 330deg);
+  animation: snake 4s linear infinite;
+  filter: blur(1.5px);
+}

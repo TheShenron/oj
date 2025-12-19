@@ -1,12 +1,23 @@
 "use client";
-import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
 
-    const { data: session, status } = useSession();
-    console.log(session, status, "WTF");
+    // const runTest = async () => {
+    //     const res = await fetch("/api/run-test", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             repoUrl: "https://github.com/TheShenron/vite-d"
+    //         })
+    //     });
 
-    return <div>Dashboard</div>;
+    //     await res.json();
+
+    // };
+
+    return (
+        <div className="relative">
+        </div>
+    )
 };
 
 export default Dashboard;
