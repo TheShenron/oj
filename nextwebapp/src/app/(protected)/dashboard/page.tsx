@@ -14,6 +14,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const avatars = [
     {
@@ -61,18 +62,17 @@ const Dashboard = () => {
                             <span>A Real-World Task Focused on</span>
                             <span className="relative inline-block">
                                 <FlipWords words={words} />
-
                                 <svg
                                     viewBox="0 0 200 20"
-                                    className="absolute left-0 -bottom-3 w-full"
                                     preserveAspectRatio="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-full h-4 text-black dark:text-white"
                                 >
                                     <path
-                                        d="M5 15 Q100 5 195 15"
+                                        d="M5 15q95-10 190 0"
                                         fill="none"
-                                        stroke="white"
+                                        stroke="currentColor"
                                         strokeWidth="4"
-                                        strokeLinecap="round"
                                     />
                                 </svg>
                             </span>
@@ -81,11 +81,11 @@ const Dashboard = () => {
 
                     <div className="mt-5">
                         <h1 className="text-center text-5xl font-extrabold text-balance">
-                            and Real Work
+                            {/* and Real Work */}
                         </h1>
                     </div>
 
-                    <div className="mt-8">
+                    <div className="mt-10">
                         <p className="text-muted-foreground text-lg text-center">
                             You’ll work locally using your preferred tools and submit your solution via GitHub.
                         </p>
@@ -135,7 +135,7 @@ const Dashboard = () => {
                     <div className="py-10 flex gap-3 justify-center">
                         <Button size="lg" variant='default' className="bg-foreground text-background hover:bg-foreground">Start Engineering Task</Button>
                         <Button variant="outline" size="lg">
-                            View Instructions →
+                            Try a Sample Task →
                         </Button>
                     </div>
 
@@ -151,15 +151,15 @@ const Dashboard = () => {
                                 Walkthrough
                                 <svg
                                     viewBox="0 0 200 20"
-                                    className="absolute left-0 -bottom-2 w-full"
                                     preserveAspectRatio="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-full h-4 text-black dark:text-white"
                                 >
                                     <path
-                                        d="M5 15 Q100 5 195 15"
+                                        d="M5 15q95-10 190 0"
                                         fill="none"
-                                        stroke="white"
+                                        stroke="currentColor"
                                         strokeWidth="4"
-                                        strokeLinecap="round"
                                     />
                                 </svg>
                             </span>
@@ -172,6 +172,48 @@ const Dashboard = () => {
                             <p className="text-muted-foreground text-lg text-center">
                                 Work locally in your own environment and submit your solution through GitHub when ready.
                             </p>
+                        </div>
+
+                        <div className="w-[80%] m-auto pt-15">
+
+                            <ol className="relative text-body border-default">
+                                <Separator orientation="vertical" className="absolute max-h-[85%]" />
+                                <li className="mb-10 ms-8">
+                                    <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -start-4 ring-4 ring-buffer bg-background">
+                                        1
+                                    </span>
+                                    <h3 className="font-medium leading-tight">Choose a task</h3>
+                                    <p className="text-sm text-muted-foreground">Start by clicking Start Engineering Task,</p>
+                                    <p className="text-sm text-muted-foreground">or visit the task page to choose the task you want to work on.</p>
+                                </li>
+                                <li className="mb-10 ms-8">
+                                    <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -start-4 ring-4 ring-buffer bg-background">
+                                        2
+                                    </span>
+                                    <h3 className="font-medium leading-tight">Download & set up</h3>
+                                    <p className="text-sm text-muted-foreground">Download the selected task and open it in your preferred editor.</p>
+                                    <p className="text-sm text-muted-foreground">Read the README.md carefully — it contains setup steps and clear instructions on what needs to be built.</p>
+                                </li>
+                                <li className="mb-10 ms-8">
+                                    <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -start-4 ring-4 ring-buffer bg-background">
+                                        3
+                                    </span>
+                                    <h3 className="font-medium leading-tight">Code locally</h3>
+                                    <p className="text-sm text-muted-foreground">Work on the task in your local environment. You can commit and push your code to GitHub as you progress.
+                                    </p >
+                                    <p className="text-sm text-muted-foreground">The required repository name and branch are mentioned in the README.</p>
+                                </li>
+                                <li className="ms-8">
+                                    <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -start-4 ring-4 ring-buffer bg-background">
+                                        4
+                                    </span>
+                                    <h3 className="font-medium leading-tight">Run tests & submit</h3>
+                                    <p className="text-sm text-muted-foreground">When you’re ready, return to the web app and open the Run Tests page. </p>
+                                    <p className="text-sm text-muted-foreground">Select the language and project ID, then click Run Tests.</p>
+                                </li>
+                            </ol>
+
+
                         </div>
 
                     </div>
@@ -187,15 +229,15 @@ const Dashboard = () => {
                                 Questions?
                                 <svg
                                     viewBox="0 0 200 20"
-                                    className="absolute left-0 -bottom-2 w-full"
                                     preserveAspectRatio="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-full h-4 text-black dark:text-white"
                                 >
                                     <path
-                                        d="M5 15 Q100 5 195 15"
+                                        d="M5 15q95-10 190 0"
                                         fill="none"
-                                        stroke="white"
+                                        stroke="currentColor"
                                         strokeWidth="4"
-                                        strokeLinecap="round"
                                     />
                                 </svg>
                             </span>
@@ -218,45 +260,39 @@ const Dashboard = () => {
                                     className="w-full"
                                 >
                                     <AccordionItem value="item-1">
-                                        <AccordionTrigger>Product Information</AccordionTrigger>
+                                        <AccordionTrigger>Is this a timed test?</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-4 text-balance">
-                                            <p>
-                                                Our flagship product combines cutting-edge technology with sleek
-                                                design. Built with premium materials, it offers unparalleled
-                                                performance and reliability.
-                                            </p>
-                                            <p>
-                                                Key features include advanced processing capabilities, and an
-                                                intuitive user interface designed for both beginners and experts.
+                                            <p className="text-gray-400">
+                                                No. There’s no strict time limit.
+                                                We encourage you to work at a comfortable pace, just like you would on a real task..
                                             </p>
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="item-2">
-                                        <AccordionTrigger>Shipping Details</AccordionTrigger>
+                                        <AccordionTrigger>Can I use Google, documentation, or AI tools?</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-4 text-balance">
-                                            <p>
-                                                We offer worldwide shipping through trusted courier partners.
-                                                Standard delivery takes 3-5 business days, while express shipping
-                                                ensures delivery within 1-2 business days.
-                                            </p>
-                                            <p>
-                                                All orders are carefully packaged and fully insured. Track your
-                                                shipment in real-time through our dedicated tracking portal.
+                                            <p className="text-gray-400">
+                                                Yes. You’re free to use documentation, search, and standard tools you normally rely on.
+                                                This task is about real-world problem solving, not memorization.
                                             </p>
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="item-3">
-                                        <AccordionTrigger>Return Policy</AccordionTrigger>
+                                        <AccordionTrigger>What if I get stuck?</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-4 text-balance">
-                                            <p>
-                                                We stand behind our products with a comprehensive 30-day return
-                                                policy. If you&apos;re not completely satisfied, simply return the
-                                                item in its original condition.
+                                            <p className="text-gray-400">
+                                                That’s completely okay.
+                                                We’re more interested in how you approach the problem than in a perfect solution.
                                             </p>
-                                            <p>
-                                                Our hassle-free return process includes free return shipping and
-                                                full refunds processed within 48 hours of receiving the returned
-                                                item.
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="item-4">
+                                        <AccordionTrigger>Do I need to finish everything to submit?</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-4 text-balance">
+                                            <p className="text-gray-400">
+                                                No.
+                                                Submit what you have when you feel comfortable — partial solutions are okay if your approach is clear.
                                             </p>
                                         </AccordionContent>
                                     </AccordionItem>
@@ -273,31 +309,54 @@ const Dashboard = () => {
                                     className="w-full"
                                 >
                                     <AccordionItem value="item-1">
-                                        <AccordionTrigger>Product Information</AccordionTrigger>
+                                        <AccordionTrigger>Do I need to code in the browser?</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-4 text-balance">
-                                            <p>
-                                                Our flagship product combines cutting-edge technology with sleek
-                                                design. Built with premium materials, it offers unparalleled
-                                                performance and reliability.
+                                            <p className="text-gray-400">
+                                                No.
+                                                All work is done locally in your own development environment.
                                             </p>
-                                            <p>
-                                                Key features include advanced processing capabilities, and an
-                                                intuitive user interface designed for both beginners and experts.
-                                            </p>
+
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="item-2">
-                                        <AccordionTrigger>Shipping Details</AccordionTrigger>
+                                        <AccordionTrigger>How do I submit my solution?</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-4 text-balance">
-                                            <p>
-                                                We offer worldwide shipping through trusted courier partners.
-                                                Standard delivery takes 3-5 business days, while express shipping
-                                                ensures delivery within 1-2 business days.
+                                            <p className="text-gray-400">
+                                                You’ll push your code to a GitHub repository and submit the repository link through this platform.
                                             </p>
-                                            <p>
-                                                All orders are carefully packaged and fully insured. Track your
-                                                shipment in real-time through our dedicated tracking portal.
+
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="item-3">
+                                        <AccordionTrigger>Can I make multiple commits?</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-4 text-balance">
+                                            <p className="text-gray-400">
+                                                Yes — and we encourage it.
+                                                Your commit history can help us understand your thought process.
                                             </p>
+
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="item-4">
+                                        <AccordionTrigger>Can I update my submission after submitting?</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-4 text-balance">
+                                            <p className="text-gray-400">
+                                                In most cases, yes — until the evaluation process begins.
+                                                You’ll see clear guidance before final submission.
+                                            </p>
+
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="item-5">
+                                        <AccordionTrigger>What do you look for when reviewing the solution?</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-4 text-balance">
+                                            <p className="text-gray-400">
+                                                We focus on clarity of thought, code structure, problem-solving approach, practicality, Not perfection.
+                                            </p>
+
                                         </AccordionContent>
                                     </AccordionItem>
 
