@@ -30,7 +30,7 @@ export function GridBackground({ className }: Readonly<GridBackgroundProps>) {
             />
 
             {/* Radial fade (keeps center clean) */}
-            <div className="absolute inset-0 bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_25%,black)]" />
+            <div className="absolute inset-0 bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]" />
         </div>
     );
 }
