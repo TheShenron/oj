@@ -37,7 +37,7 @@ export function SiteHeader() {
     }
 
     return (
-        <header className="fixed top-0 inset-x-0 z-50 border-b bg-background/50 backdrop-blur lg:px-5 lg:border-b lg:border-dashed">
+        <div className="fixed top-0 inset-x-0 z-50 border-b bg-background/50 backdrop-blur lg:px-5 lg:border-b lg:border-dashed">
             <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 lg:border-l lg:border-r lg:border-dashed">
                 <div className="flex items-center gap-4">
                     <Link href="/" className="flex items-center justify-center gap-2.5">
@@ -198,6 +198,6 @@ export function SiteHeader() {
                     </Sheet>
                 </div>
             </div>
-        </header>
+        </div>
     );
 }

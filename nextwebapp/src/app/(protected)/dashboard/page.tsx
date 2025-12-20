@@ -2,6 +2,8 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { FlipWords } from "@/components/ui/flip-words";
+import { GridBackground } from "@/components/ui/grid-background";
 import { AnimatedTooltip } from "@/components/ui/motion-tooltip";
 import { Separator } from "@/components/ui/separator";
 import { FaReact, FaPython, FaNodeJs } from "react-icons/fa";
@@ -33,11 +35,14 @@ const avatars = [
     }
 ]
 
+const words = ["ReactJS", "NodeJS", "Python"];
+
+
 const Dashboard = () => {
 
     return (
-        <div className="lg:px-8 lg:border-l lg:border-r lg:border-dashed bg-gradient-to-b from-neutral-100/4 to-transparent h-150">
-
+        <div className="relative lg:px-8 lg:border-l lg:border-r lg:border-dashed bg-gradient-to-b from-neutral-100/4 to-transparent h-150">
+            <GridBackground />
             <div className="pt-25">
                 <div className="text-center">
                     <Badge className="text-foreground bg-background border border-gray text-sm">🎉 You’re about to work on a real engineering task. Take a breath. You’re in the right place.  🪄</Badge>
@@ -45,7 +50,24 @@ const Dashboard = () => {
 
                 <div className="mt-10">
                     <h1 className="text-center text-5xl font-extrabold text-balance">
-                        A Real-World Task Focused on React
+                        <span>A Real-World Task Focused on</span>
+                        <span className="relative inline-block">
+                            <FlipWords words={words} />
+
+                            <svg
+                                viewBox="0 0 200 20"
+                                className="absolute left-0 -bottom-3 w-full"
+                                preserveAspectRatio="none"
+                            >
+                                <path
+                                    d="M5 15 Q100 5 195 15"
+                                    fill="none"
+                                    stroke="white"
+                                    strokeWidth="4"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        </span>
                     </h1>
                 </div>
 
@@ -102,13 +124,12 @@ const Dashboard = () => {
                 </div>
 
 
-                <div className="mt-20 flex gap-3 justify-center">
+                <div className="mt-10 flex gap-3 justify-center">
                     <Button size="lg" variant='default' className="bg-foreground text-background hover:bg-foreground">Start Engineering Task</Button>
                     <Button variant="outline" size="lg">
                         View Instructions →
                     </Button>
                 </div>
-
 
             </div>
 
