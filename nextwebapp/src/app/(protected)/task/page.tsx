@@ -98,14 +98,14 @@ const Task = () => {
                     </div>
 
                     <div className="py-10 flex justify-center">
-                        <ButtonGroup className="gap-4">
+                        <ButtonGroup>
                             <Button variant="outline">
                                 <FaReact className="h-5 w-5" /> ReactJS
                             </Button>
-                            <Button variant="outline">
+                            <Button variant="outline" disabled>
                                 <FaNodeJs className="h-5 w-5" /> NodeJS
                             </Button>
-                            <Button variant="outline">
+                            <Button variant="outline" disabled>
                                 <FaPython className="h-5 w-5" /> Python
                             </Button>
                         </ButtonGroup>
