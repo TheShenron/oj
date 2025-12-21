@@ -8,6 +8,7 @@ import {
     SheetHeader,
     SheetTitle,
     SheetDescription,
+    SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,11 +27,20 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { useSession, signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { Separator } from "../ui/separator";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
+
+const navItems = [
+    { label: "Home", href: "/dashboard" },
+    { label: "Task", href: "/task" },
+    { label: "Result", href: "/result" },
+];
 
 export function SiteHeader() {
     const { data: session } = useSession();
     const { setTheme, theme } = useTheme()
     console.log(theme)
+    const pathname = usePathname();
 
     const toggleTheme = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -54,12 +64,26 @@ export function SiteHeader() {
                     </Link>
 
                     <nav className="hidden lg:flex items-center ml-7">
-                        <Link href={"/task"}>
-                            <Button variant="link" className="px-2 text-muted-foreground hover:text-foreground">Task</Button>
-                        </Link>
-                        <Link href={"/result"}>
-                            <Button variant="link" className="px-2 text-muted-foreground hover:text-foreground">Results</Button>
-                        </Link>
+
+                        {navItems.map((item) => {
+                            const isActive = pathname === item.href;
+
+                            return (
+                                <Link key={item.href} href={item.href}>
+                                    <Button
+                                        variant="link"
+                                        className={clsx(
+                                            "px-2 transition-colors",
+                                            isActive
+                                                ? "text-foreground underline"
+                                                : "text-muted-foreground hover:text-foreground"
+                                        )}
+                                    >
+                                        {item.label}
+                                    </Button>
+                                </Link>
+                            );
+                        })}
                     </nav>
                 </div>
 
@@ -79,6 +103,7 @@ export function SiteHeader() {
                         size="icon"
                         className="rounded-md"
                         aria-label="GitHub"
+                        disabled
                     >
                         <FaGithub className="h-4 w-4" />
                     </Button>
@@ -88,6 +113,7 @@ export function SiteHeader() {
                         size="icon"
                         className="rounded-md"
                         aria-label="Linkedin"
+                        disabled
                     >
                         <FaLinkedin className="h-4 w-4" />
                     </Button>
@@ -176,21 +202,40 @@ export function SiteHeader() {
                                 </div>
                             </SheetHeader>
 
-                            <div className="mt-6 flex flex-col gap-6 px-4">
+                            <SheetDescription>
+                                <div className="flex gap-1 flex-col px-4">
+                                    {navItems.map((item) => {
+                                        const isActive = pathname === item.href;
+                                        return (
+                                            <Link key={item.href} href={item.href}>
+                                                <Button
+                                                    variant="link"
+                                                    className={clsx(
+                                                        "transition-colors",
+                                                        isActive
+                                                            ? "text-foreground underline"
+                                                            : "text-muted-foreground hover:text-foreground"
+                                                    )}
+                                                >
+                                                    {item.label}
+                                                </Button>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </SheetDescription>
 
-                                <nav className="flex flex-col gap-3 text-sm font-medium text-muted-foreground">
-                                </nav>
-
+                            <SheetFooter>
                                 <div className="flex gap-2">
                                     <Button variant="outline" size="icon" className="rounded-md" aria-label="Toggle theme" onClick={toggleTheme}>
                                         <SunMoon className="h-4 w-4" />
                                     </Button>
 
-                                    <Button variant="outline" size="icon" className="rounded-md" aria-label="GitHub">
+                                    <Button variant="outline" size="icon" className="rounded-md" aria-label="GitHub" disabled>
                                         <FaGithub className="h-4 w-4" />
                                     </Button>
 
-                                    <Button variant="outline" size="icon" className="rounded-md" aria-label="Linkedin menu">
+                                    <Button variant="outline" size="icon" className="rounded-md" aria-label="Linkedin menu" disabled>
                                         <FaLinkedin className="h-4 w-4" />
                                     </Button>
 
@@ -198,7 +243,8 @@ export function SiteHeader() {
                                         <LogOut className="h-4 w-4" />
                                     </Button>
                                 </div>
-                            </div>
+                            </SheetFooter>
+
                         </SheetContent>
                     </Sheet>
                 </div>
