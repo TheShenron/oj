@@ -53,8 +53,13 @@ export function SiteHeader() {
                         </span>
                     </Link>
 
-                    <nav className="hidden lg:flex items-center gap-3 ml-6 text-sm font-medium text-muted-foreground">
-
+                    <nav className="hidden lg:flex items-center ml-7">
+                        <Link href={"/task"}>
+                            <Button variant="link" className="px-2 text-muted-foreground hover:text-foreground">Task</Button>
+                        </Link>
+                        <Link href={"/result"}>
+                            <Button variant="link" className="px-2 text-muted-foreground hover:text-foreground">Results</Button>
+                        </Link>
                     </nav>
                 </div>
 
