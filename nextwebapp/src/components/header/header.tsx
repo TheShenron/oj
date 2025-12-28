@@ -34,6 +34,7 @@ const navItems = [
     { label: "Home", href: "/dashboard" },
     { label: "Task", href: "/task" },
     { label: "Result", href: "/result" },
+    { label: "Admin", href: "/admin" },
 ];
 
 export function SiteHeader() {

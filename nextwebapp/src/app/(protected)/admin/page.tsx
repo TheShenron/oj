@@ -1,59 +1,59 @@
 "use client";
 
-import { GridBackground } from "@/components/ui/grid-background";
-import { Button } from "@/components/ui/button"
+// import { GridBackground } from "@/components/ui/grid-background";
+// import { Button } from "@/components/ui/button"
 import data from "@/app/(protected)/result/data.json"
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from "@/components/ui/command"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import { useState } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+// import {
+//     Command,
+//     CommandEmpty,
+//     CommandGroup,
+//     CommandInput,
+//     CommandItem,
+//     CommandList,
+// } from "@/components/ui/command"
+// import {
+//     Popover,
+//     PopoverContent,
+//     PopoverTrigger,
+// } from "@/components/ui/popover"
+// import { useState } from "react";
+// import { Check, ChevronsUpDown } from "lucide-react";
+// import { cn } from "@/lib/utils";
 import { DataTable } from "./data-table";
-import { ChartAreaInteractive } from "./chart-area-interactive";
+// import { ChartAreaInteractive } from "./chart-area-interactive";
 
 
-const frameworks = [
-    {
-        value: "next.js",
-        label: "Next.js",
-    },
-    {
-        value: "sveltekit",
-        label: "SvelteKit",
-    },
-    {
-        value: "nuxt.js",
-        label: "Nuxt.js",
-    },
-    {
-        value: "remix",
-        label: "Remix",
-    },
-    {
-        value: "astro",
-        label: "Astro",
-    },
-]
+// const frameworks = [
+//     {
+//         value: "next.js",
+//         label: "Next.js",
+//     },
+//     {
+//         value: "sveltekit",
+//         label: "SvelteKit",
+//     },
+//     {
+//         value: "nuxt.js",
+//         label: "Nuxt.js",
+//     },
+//     {
+//         value: "remix",
+//         label: "Remix",
+//     },
+//     {
+//         value: "astro",
+//         label: "Astro",
+//     },
+// ]
 
-const Result = () => {
+const Admin = () => {
 
-    const [open, setOpen] = useState(false)
-    const [value, setValue] = useState("")
+    // const [open, setOpen] = useState(false)
+    // const [value, setValue] = useState("")
 
     return (
         <>
-            <div className="mx-5 relative lg:px-8 lg:border-l lg:border-r lg:border-dashed">
+            {/* <div className="mx-5 relative lg:px-8 lg:border-l lg:border-r lg:border-dashed">
                 <GridBackground />
                 <div className="pt-10">
 
@@ -125,20 +125,28 @@ const Result = () => {
                     </div>
 
                 </div>
-            </div>
+            </div> */}
 
             <div className="lg:border-t lg:border-b lg:border-dashed px-5">
                 <div className="lg:px-8 lg:border-l lg:border-r lg:border-dashed">
-                    <div className="py-10">
-                        {/* <div className="mb-10">
+                    {/* <div className="py-10">
+                        <div className="mb-10">
                             <ChartAreaInteractive />
-                        </div> */}
-                        {/* <DataTable data={data} /> */}
+                        </div>
+                        <DataTable data={data} />
+                    </div > */}
+
+                    <div className="py-10">
+                        <DataTable data={data} />
                     </div >
+
+                    {/* <div className="py-10">
+                        <DataTable data={data} />
+                    </div > */}
                 </div >
             </div >
         </>
     )
 };
 
-export default Result;
+export default Admin;

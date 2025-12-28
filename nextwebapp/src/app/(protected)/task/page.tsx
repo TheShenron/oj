@@ -9,6 +9,8 @@ import { UnderlineIcon } from '@/assets/underline'
 import Link from "next/link";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import api from "@/lib/axios";
 
 
 type TaskCardProps = {
@@ -17,7 +19,7 @@ type TaskCardProps = {
     tech: string
     difficulty: "Easy" | "Medium" | "Hard"
     taskId: string
-    onDownload?: () => void
+    onDownload?: string
 }
 
 function TaskCard({
@@ -29,7 +31,7 @@ function TaskCard({
     onDownload,
 }: TaskCardProps) {
     return (
-        <Card className='max-w-sm rounded-sm'>
+        <Card className='max-w-sm rounded-sm gap-2.5'>
             <CardHeader>
                 <CardTitle className="text-xl">{title}</CardTitle>
             </CardHeader>
@@ -44,16 +46,27 @@ function TaskCard({
                 <Separator className="my-3" />
 
                 <div className="flex items-center gap-3 text-sm">
-                    <div className="">{tech}</div>
+                    <div className="uppercase">{tech}</div>
                     <Separator orientation="vertical" className="py-3" />
-                    <div className="">{difficulty}</div>
+                    <div className="uppercase">{difficulty}</div>
                     <Separator orientation="vertical" className="py-3" />
                     <div className="">{taskId}</div>
                 </div>
             </CardContent>
 
             <CardFooter>
-                <Button variant='outline' onClick={onDownload}>
+                <Button
+                    variant='outline'
+                    className="mt-2"
+                    onClick={() => {
+                        if (!onDownload) return;
+                        const link = document.createElement("a");
+                        link.href = onDownload;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }}
+                >
                     Download
                 </Button>
             </CardFooter>
@@ -64,6 +77,21 @@ function TaskCard({
 
 
 const Task = () => {
+
+    const [tasks, setTasks] = useState<Array<any>>([])
+
+    const getTasks = async () => {
+        try {
+            const response = await api.get("/tasks")
+            setTasks(response.data)
+        } catch (error) {
+            console.error("Error fetching tasks:", error)
+        }
+    }
+
+    useEffect(() => {
+        getTasks()
+    }, []);
 
     return (
         <>
@@ -117,16 +145,31 @@ const Task = () => {
             <div className="lg:border-t lg:border-b lg:border-dashed px-5">
                 <div className="lg:px-8 lg:border-l lg:border-r lg:border-dashed">
                     <div className="py-10">
-                        <div className="flex gap-3">
-                            <TaskCard
-                                description="Build a small Node.js API to manage tasks. Focus on clean structure, clear logic, and practical decisions."
-                                difficulty="Medium"
-                                taskId="NODE-API-01"
-                                tech="ReactJS"
-                                title="Task Management API"
-                            />
+                        <div className="flex gap-3 flex-wrap justify-start">
+                            {tasks.length === 0 ? (
+                                <div className="w-full py-13 text-center">
+                                    <p className="text-2xl font-medium text-foreground">
+                                        No tasks found
+                                    </p>
+                                    <p className="mt-2 text-sm text-muted-foreground">
+                                        Looks like there are no tasks here yet. Try creating one or adjust your filters.
+                                    </p>
+                                </div>
+                            ) : (
+                                tasks.map((task) => (
+                                    <TaskCard
+                                        key={task._id}
+                                        title={task.title}
+                                        description={task.description}
+                                        difficulty={task.level}
+                                        taskId={task.taskId}
+                                        tech={task.tech}
+                                        onDownload={task.repoTemplateUrl}
+                                    />
+                                ))
+                            )}
+                        </div>
 
-                        </div >
 
                     </div >
                 </div >

@@ -470,7 +470,7 @@ export function DataTable({
                                 })}
                         </DropdownMenuContent>
                     </DropdownMenu>
-                    {/* <CreateTaskDialog /> */}
+                    <CreateTaskDialog />
                 </div>
             </div>
             <TabsContent
